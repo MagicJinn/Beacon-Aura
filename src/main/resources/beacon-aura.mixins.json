@@ -3,7 +3,7 @@
 	"package": "magicjinn.beaconaura.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"BeaconBlockEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
