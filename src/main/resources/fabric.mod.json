@@ -1,0 +1,48 @@
+{
+	"schemaVersion": 1,
+	"id": "beacon-aura",
+	"version": "${version}",
+	"name": "Beacon Aura",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/beacon-aura/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "magicjinn.beaconaura.BeaconAura",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "magicjinn.beaconaura.BeaconAuraClient",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"beacon-aura.mixins.json",
+		{
+			"config": "beacon-aura.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
