@@ -19,8 +19,8 @@ public class ModMenuIntegration implements ModMenuApi {
         private static final String EXTRA_SECONDS_LABEL = "Seconds Per Level";
         private static final String EXTRA_SECONDS_DESC = """
                         The amount of seconds added to the beacon effect's duration per beacon pulse, for each level of the beacon.
-                        A beacon will always replenish at least 4 seconds on top of this value to maintain the effect, as the effect is applied every 4 seconds.
-                        The total duration added each pulse is calculated as: 4 + (Extra Seconds Per Level * Beacon Level)
+                        A beacon will always replenish at least 4 seconds on top of this value to maintain the effect, as the effect is applied every 4 seconds.\n
+                        The total duration added each pulse is calculated as:\n4 + (Extra Seconds Per Level * Beacon Level)
                         """;
 
         private static final String MAX_MINUTES_LABEL = "Maximum Minutes Per Level";
