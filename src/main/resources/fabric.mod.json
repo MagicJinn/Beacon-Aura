@@ -32,7 +32,8 @@
         "yet-another-config-lib": "*"
     },
     "breaks":{
-        "beaconrange": "*"
+        "beacon-range-extender": "*",
+        "better_beacon_range": "*"
     },
     "custom": {
         "modmenu": {
