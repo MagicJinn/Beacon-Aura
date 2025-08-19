@@ -4,6 +4,7 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
+import dev.isxander.yacl3.config.v2.api.autogen.CustomImage;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
@@ -37,7 +38,6 @@ public class ModMenuIntegration implements ModMenuApi {
                                 .category(ConfigCategory.createBuilder()
                                                 .name(Text.literal(CATEGORY_NAME))
                                                 .tooltip(Text.literal(CATEGORY_TOOLTIP))
-
                                                 .option(Option.<Integer>createBuilder()
                                                                 .name(Text.literal(EXTRA_SECONDS_LABEL))
                                                                 .description(OptionDescription
