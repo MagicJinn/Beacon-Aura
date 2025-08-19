@@ -4,28 +4,42 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
-import dev.isxander.yacl3.config.v2.api.autogen.CustomImage;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
 public class ModMenuIntegration implements ModMenuApi {
 
-        // UI Text Constants
-        private static final String TITLE = "Beacon Aura Settings";
-        private static final String CATEGORY_NAME = "Beacon Aura Tuning";
-        private static final String CATEGORY_TOOLTIP = "Tune how much time is added per pulse, the duration cap, and the range formula.";
+        private static final int MINVALUE = 0; // Who cares
+        private static final int MAXVALUE = 99999; // Just to prevent people from putting it as maxInt
 
-        // Option Labels
-        private static final String EXTRA_SECONDS_LABEL = "Extra Seconds Per Level";
-        private static final String MAX_MINUTES_LABEL = "Max Minutes Per Level";
+        private static final String TITLE = "Beacon Aura Settings"; // This doesn't seem to do anything
+        private static final String CATEGORY_NAME = "Beacon Aura";
+        private static final String CATEGORY_TOOLTIP = "Tune various settings for the mod.";
+
+        private static final String EXTRA_SECONDS_LABEL = "Seconds Per Level";
+        private static final String EXTRA_SECONDS_DESC = """
+                        The amount of seconds added to the beacon effect's duration per beacon pulse, for each level of the beacon.
+                        A beacon will always replenish at least 4 seconds on top of this value to maintain the effect, as the effect is applied every 4 seconds.
+                        The total duration added each pulse is calculated as: 4 + (Extra Seconds Per Level * Beacon Level)
+                        """;
+
+        private static final String MAX_MINUTES_LABEL = "Maximum Minutes Per Level";
+        private static final String MAX_MINUTES_DESC = """
+                        The maximum duration, in minutes, that the beacon's effect can last, before it stops increasing, for each level of the beacon.
+                        For example, a value of 15 will allow a level 1 beacon to last for a maximum of 15 minutes, a level 2 beacon for 30 minutes, and a level 4 beacon for 60 minutes.
+                        """;
+
         private static final String RANGE_BASE_LABEL = "Range Base";
-        private static final String RANGE_PER_LEVEL_LABEL = "Range Per Level";
+        private static final String RANGE_BASE_DESC = """
+                        The base range, in blocks, that the beacon effect extends from the beacon, regardless of the beacon's level.
+                        This range is a radius extending outwards from the beacon in all horizontal directions.
+                        """;
 
-        // Option Descriptions
-        private static final String EXTRA_SECONDS_DESC = "Seconds added per beacon level each pulse.";
-        private static final String MAX_MINUTES_DESC = "Maximum effect duration cap per level (in minutes).";
-        private static final String RANGE_BASE_DESC = "Base range added regardless of beacon level (blocks).";
-        private static final String RANGE_PER_LEVEL_DESC = "Additional range per beacon level (blocks).";
+        private static final String RANGE_PER_LEVEL_LABEL = "Range Per Level";
+        private static final String RANGE_PER_LEVEL_DESC = """
+                        The additional range, in blocks, added to the beacon effect's radius for each level of the beacon.
+                        This value is multiplied by the beacon level and added to the base range to determine the total range of the beacon effect.
+                        """;
 
         @Override
         public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -46,7 +60,7 @@ public class ModMenuIntegration implements ModMenuApi {
                                                                                 v -> ModConfig.extraSecondsPerLevel = v)
                                                                 .controller(opt -> IntegerFieldControllerBuilder
                                                                                 .create(opt)
-                                                                                .range(0, 60))
+                                                                                .range(MINVALUE, MAXVALUE))
                                                                 .build())
 
                                                 .option(Option.<Integer>createBuilder()
@@ -57,7 +71,7 @@ public class ModMenuIntegration implements ModMenuApi {
                                                                                 v -> ModConfig.maxMinutesPerLevel = v)
                                                                 .controller(opt -> IntegerFieldControllerBuilder
                                                                                 .create(opt)
-                                                                                .range(1, 60))
+                                                                                .range(MINVALUE, MAXVALUE))
                                                                 .build())
 
                                                 .option(Option.<Integer>createBuilder()
@@ -68,7 +82,7 @@ public class ModMenuIntegration implements ModMenuApi {
                                                                                 v -> ModConfig.rangeBase = v)
                                                                 .controller(opt -> IntegerFieldControllerBuilder
                                                                                 .create(opt)
-                                                                                .range(0, 128))
+                                                                                .range(MINVALUE, MAXVALUE))
                                                                 .build())
 
                                                 .option(Option.<Integer>createBuilder()
@@ -79,7 +93,7 @@ public class ModMenuIntegration implements ModMenuApi {
                                                                                 v -> ModConfig.rangePerLevel = v)
                                                                 .controller(opt -> IntegerFieldControllerBuilder
                                                                                 .create(opt)
-                                                                                .range(0, 128))
+                                                                                .range(MINVALUE, MAXVALUE))
                                                                 .build())
 
                                                 .build())
