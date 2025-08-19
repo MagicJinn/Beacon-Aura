@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+// Simple mod config class, who gives a shit
 public class ModConfig {
     // Gameplay configuration
     public static int extraSecondsPerLevel = 4;
@@ -24,7 +25,7 @@ public class ModConfig {
 
     public static void load() {
         if (!CONFIG_FILE.exists()) {
-            save();
+            save(); // Create the config file if it doesn't exist
             return;
         }
 
@@ -37,7 +38,8 @@ public class ModConfig {
                 rangePerLevel = data.rangePerLevel;
             }
         } catch (IOException e) {
-            System.err.println("Failed to load Beacon Aura config: " + e.getMessage());
+            save();
+            System.err.println("Failed to load Beacon Aura config: " + e.getMessage() + ". Making a new one.");
         }
     }
 
