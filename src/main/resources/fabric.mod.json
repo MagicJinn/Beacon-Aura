@@ -31,6 +31,9 @@
         "modmenu": "*",
         "yet-another-config-lib": "*"
     },
+    "breaks":{
+        "beaconrange": "*"
+    },
     "custom": {
         "modmenu": {
             "links": {
