@@ -20,8 +20,9 @@ import org.jetbrains.annotations.Nullable;
 public class BeaconBlockEntityMixin {
 
 	// Timing constants (vanilla pulse cadence and behavior tweaks)
-	private static final int TICKS_PER_SECOND = 20;
+	private static final int TICKS_PER_SECOND = 20; // Ticks per second
 	private static final int PULSE_SECONDS = 4; // Beacon re-applies effects every 4 seconds
+	private static final int PULSE_INTERVAL_TICKS = PULSE_SECONDS * TICKS_PER_SECOND; // Amount of ticks between pulses
 
 	/**
 	 * Overwrites vanilla beacon effect logic.
@@ -34,24 +35,23 @@ public class BeaconBlockEntityMixin {
 	 */
 	@Overwrite
 	private static void applyPlayerEffects(World world, BlockPos pos, int beaconLevel,
-										   @Nullable RegistryEntry<StatusEffect> primaryEffect,
-										   @Nullable RegistryEntry<StatusEffect> secondaryEffect) {
-		// Server-only; no-op if no primary effect (mirrors vanilla gate)
-		if (world.isClient || primaryEffect == null) return;
+			@Nullable RegistryEntry<StatusEffect> primaryEffect,
+			@Nullable RegistryEntry<StatusEffect> secondaryEffect) {
+		if (world.isClient || primaryEffect == null)
+			return;
 
-		// Amount of time added to the effect this pulse
-		final int pulseIntervalTicks = PULSE_SECONDS * TICKS_PER_SECOND;
+		// Amount of ticks each level adds to the effect per pulse
 		final int extraTicksPerLevel = beaconLevel * ModConfig.extraSecondsPerLevel * TICKS_PER_SECOND;
-		final int ticksToAdd = pulseIntervalTicks + extraTicksPerLevel;
-
+		// Final amount of ticks to add
+		final int ticksToAdd = PULSE_INTERVAL_TICKS + extraTicksPerLevel;
 		// Maximum allowed duration based on beacon level
 		final int maxEffectDuration = ModConfig.maxMinutesPerLevel * 60 * TICKS_PER_SECOND * beaconLevel;
 
-		// Effect radius: base 10 + 10 per beacon level (vanilla)
+		// Effect radius
 		final double range = beaconLevel * ModConfig.rangePerLevel + ModConfig.rangeBase;
 
-		final boolean secondarySameAsPrimary = Objects.equals(primaryEffect, secondaryEffect);
-		final int amplifier = (beaconLevel >= 4 && secondarySameAsPrimary) ? 1 : 0;
+		final boolean isSecondarySameAsPrimary = Objects.equals(primaryEffect, secondaryEffect);
+		final int amplifier = (beaconLevel >= 4 && isSecondarySameAsPrimary) ? 1 : 0;
 
 		// Apply to all non-spectating players in range, spanning full world height
 		final Box box = new Box(pos).expand(range).stretch(0.0F, world.getHeight(), 0.0F);
@@ -60,9 +60,8 @@ public class BeaconBlockEntityMixin {
 			return;
 
 		applyEffectToPlayers(primaryEffect, players, ticksToAdd, maxEffectDuration, amplifier);
-
 		// Secondary applies only at level 4+, and only if different from primary
-		if (beaconLevel >= 4 && !secondarySameAsPrimary && secondaryEffect != null) {
+		if (beaconLevel >= 4 && !isSecondarySameAsPrimary && secondaryEffect != null) {
 			applyEffectToPlayers(secondaryEffect, players, ticksToAdd, maxEffectDuration, 0);
 		}
 	}
@@ -76,14 +75,15 @@ public class BeaconBlockEntityMixin {
 			int ticksToAdd,
 			int maxTicks,
 			int amplifier) {
-		if (effect == null || players.isEmpty())
+		if (effect == null)
 			return;
 
 		for (PlayerEntity player : players) {
 			final StatusEffectInstance current = player.getStatusEffect(effect);
 			final int newDuration = (current != null ? current.getDuration() + ticksToAdd : ticksToAdd);
 			if (newDuration < maxTicks) {
-				// Ambient + showParticles = true to mirror beacon-style visuals
+				// If within the allowed duration, apply the new effect
+				// (don't use clamp or min to avoid small beacons overwriting eachother)
 				player.addStatusEffect(new StatusEffectInstance(effect, newDuration, amplifier, true, true));
 			}
 		}
