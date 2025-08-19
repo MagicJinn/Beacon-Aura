@@ -30,5 +30,13 @@
 		"minecraft": "~1.21.8",
 		"java": ">=21",
 		"fabric-api": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/bQvtauxXWp",
+				"modmenu.source": "https://github.com/MagicJinn/Beacon-Aura"
+			}
+		}
 	}
 }
