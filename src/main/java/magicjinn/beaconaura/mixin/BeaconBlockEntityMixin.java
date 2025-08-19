@@ -1,5 +1,6 @@
 package magicjinn.beaconaura.mixin;
 
+import magicjinn.beaconaura.config.ModConfig;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffect;
@@ -21,8 +22,6 @@ public class BeaconBlockEntityMixin {
 	// Timing constants (vanilla pulse cadence and behavior tweaks)
 	private static final int TICKS_PER_SECOND = 20;
 	private static final int PULSE_SECONDS = 4; // Beacon re-applies effects every 4 seconds
-	private static final int EXTRA_SECONDS_PER_LEVEL = 4; // Additional duration added per level each pulse
-	private static final int MAX_MINUTES_PER_LEVEL = 15; // Cap duration per level
 
 	/**
 	 * Overwrites vanilla beacon effect logic.
@@ -42,14 +41,14 @@ public class BeaconBlockEntityMixin {
 
 		// Amount of time added to the effect this pulse
 		final int pulseIntervalTicks = PULSE_SECONDS * TICKS_PER_SECOND;
-		final int extraTicksPerLevel = beaconLevel * EXTRA_SECONDS_PER_LEVEL * TICKS_PER_SECOND;
+		final int extraTicksPerLevel = beaconLevel * ModConfig.extraSecondsPerLevel * TICKS_PER_SECOND;
 		final int ticksToAdd = pulseIntervalTicks + extraTicksPerLevel;
 
 		// Maximum allowed duration based on beacon level
-		final int maxEffectDuration = MAX_MINUTES_PER_LEVEL * 60 * TICKS_PER_SECOND * beaconLevel;
+		final int maxEffectDuration = ModConfig.maxMinutesPerLevel * 60 * TICKS_PER_SECOND * beaconLevel;
 
 		// Effect radius: base 10 + 10 per beacon level (vanilla)
-		final double range = beaconLevel * 10 + 10;
+		final double range = beaconLevel * ModConfig.rangePerLevel + ModConfig.rangeBase;
 
 		final boolean secondarySameAsPrimary = Objects.equals(primaryEffect, secondaryEffect);
 		final int amplifier = (beaconLevel >= 4 && secondarySameAsPrimary) ? 1 : 0;

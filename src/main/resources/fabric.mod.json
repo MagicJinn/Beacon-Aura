@@ -14,7 +14,8 @@
     "environment": "*",
     "entrypoints": {
         "main": ["magicjinn.beaconaura.BeaconAura"],
-        "client": ["magicjinn.beaconaura.BeaconAuraClient"]
+        "client": ["magicjinn.beaconaura.BeaconAuraClient"],
+        "modmenu": ["magicjinn.beaconaura.config.ModMenuIntegration"]
     },
     "mixins": ["beacon-aura.mixins.json", {
         "config": "beacon-aura.client.mixins.json",
