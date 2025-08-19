@@ -7,26 +7,15 @@
 		"authors": [
 		"MagicJinn"
 	],
-	"contact": {
-		"homepage": "https://github.com/MagicJinn/Beacon-Aura",
-		"sources": "https://github.com/MagicJinn/Beacon-Aura",
-		"issues": "https://github.com/MagicJinn/Beacon-Aura/issues"
-	},
 	"license": "GPL-3.0",
 	"icon": "assets/beacon-aura/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			{
-				"value": "magicjinn.beaconaura.BeaconAura",
-				"adapter": "kotlin"
-			}
+			"magicjinn.beaconaura.BeaconAura"
 		],
 		"client": [
-			{
-				"value": "magicjinn.beaconaura.BeaconAuraClient",
-				"adapter": "kotlin"
-			}
+			"magicjinn.beaconaura.BeaconAuraClient"
 		]
 	},
 	"mixins": [
@@ -40,10 +29,6 @@
 		"fabricloader": ">=0.17.2",
 		"minecraft": "~1.21.8",
 		"java": ">=21",
-		"fabric-api": "*",
-		"fabric-language-kotlin": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
+		"fabric-api": "*"
 	}
 }

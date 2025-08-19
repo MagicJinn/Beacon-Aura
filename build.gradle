@@ -1,7 +1,6 @@
 plugins {
 	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
-	id "org.jetbrains.kotlin.jvm" version "2.2.10"
 }
 
 version = project.mod_version
@@ -39,7 +38,6 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 }
 
 processResources {
@@ -56,12 +54,6 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-	kotlinOptions {
-		jvmTarget = 21
-	}
 }
 
 java {
@@ -91,21 +83,21 @@ publishing {
 			
 			pom {
 				name = project.mod_name
-				description = "A Fabric mod that enhances beacon functionality with visual auras and effects."
+				description = "Improves beacons by allowing you to soak in a beacon's effects with duration stacking over time."
 				url = "https://github.com/MagicJinn/Beacon-Aura"
 				
 				developers {
 					developer {
 						id = "magicjinn"
 						name = "MagicJinn"
-						email = "magicjinn@example.com"
+						email = "magicjinn@mail.com"
 					}
 				}
 				
 				licenses {
 					license {
-						name = "MIT License"
-						url = "https://opensource.org/licenses/MIT"
+						name = "GPL-3.0"
+						url = "https://www.gnu.org/licenses/gpl-3.0"
 					}
 				}
 				
