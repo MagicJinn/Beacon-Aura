@@ -3,15 +3,16 @@
 	"id": "beacon-aura",
 	"version": "${version}",
 	"name": "Beacon Aura",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Enhance beacon functionality by allowing you to soak in its effects.",
 	"authors": [
-		"Me!"
+		"MagicJinn"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/MagicJinn/Beacon-Aura",
+		"sources": "https://github.com/MagicJinn/Beacon-Aura",
+		"issues": "https://github.com/MagicJinn/Beacon-Aura/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/beacon-aura/icon.png",
 	"environment": "*",
 	"entrypoints": {
