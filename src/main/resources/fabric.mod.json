@@ -3,8 +3,8 @@
 	"id": "beacon-aura",
 	"version": "${version}",
 	"name": "Beacon Aura",
-	"description": "Enhance beacon functionality by allowing you to soak in its effects.",
-	"authors": [
+	"description": "Improves beacons by allowing you to soak in a beacon's effects with duration stacking over time.",
+		"authors": [
 		"MagicJinn"
 	],
 	"contact": {
@@ -12,7 +12,7 @@
 		"sources": "https://github.com/MagicJinn/Beacon-Aura",
 		"issues": "https://github.com/MagicJinn/Beacon-Aura/issues"
 	},
-	"license": "MIT",
+	"license": "GPL-3.0",
 	"icon": "assets/beacon-aura/icon.png",
 	"environment": "*",
 	"entrypoints": {
