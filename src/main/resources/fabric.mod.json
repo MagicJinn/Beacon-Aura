@@ -22,10 +22,9 @@
         "environment": "client"
     }],
     "depends": {
-        "fabricloader": ">=0.17.2",
-        "minecraft": "~1.21.8",
-        "java": ">=21",
-        "fabric-api": "*"
+        "fabricloader": "*",
+        "minecraft": ">=1.21.0",
+        "java": ">=17"
     },
     "suggests": {
         "modmenu": "*",
