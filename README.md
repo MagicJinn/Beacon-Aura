@@ -1,5 +1,7 @@
 # Beacon Aura
 
+![icon.png](icon.png)
+
 ## Improves beacons by allowing you to soak in a beacon's effects with duration stacking over time
 
 [![Modrinth: Beacon Aura](https://img.shields.io/badge/Modrinth-Beacon-Aura-00ae5d?logo=modrinth)](https://modrinth.com/mod/beacon-aura)
