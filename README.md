@@ -1,11 +1,11 @@
 # Beacon Aura
 
-## Extend Beacon Effects and Enhance Your Minecraft Experience
+## Improves beacons by allowing you to soak in a beacon's effects with duration stacking over time
 
 [![Modrinth: Beacon Aura](https://img.shields.io/badge/Modrinth-Beacon-Aura-00ae5d?logo=modrinth)](https://modrinth.com/mod/beacon-aura)
 [![CurseForge: Beacon Aura](https://img.shields.io/badge/CurseForge-Beacon-Aura-f16437?logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/beacon-aura)
 
-Vanilla beacons feel underwhelming? Beacon Aura solves this by allowing you to *soak* in the beacon's effects while within its range, extending their duration, to be enjoyed20 after you leave their radius. The strength of the effect buildup and the maximum duration are determined by the beacon's level. The mod also increases the beacon's range by default, as well as allowing you to configure it for yourself.
+Vanilla beacons feel underwhelming. Beacon Aura solves this by allowing you to *soak* in the beacon's effects while within its range, extending their duration, to be enjoyed20 after you leave their radius. The strength of the effect buildup and the maximum duration are determined by the beacon's level. The mod also increases the beacon's range by default, as well as allowing you to configure it for yourself.
 
 ### Features
 
