@@ -80,7 +80,10 @@ public class BeaconBlockEntityMixin {
 
 		for (PlayerEntity player : players) {
 			final StatusEffectInstance current = player.getStatusEffect(effect);
-			final int newDuration = (current != null ? current.getDuration() + ticksToAdd : ticksToAdd);
+			// If no effect is present, add ticksToAdd + 1 second, to make sure it stays
+			// Otherwise add ticksToAdd to the current effect
+			final int newDuration = (current != null ? current.getDuration() + ticksToAdd
+					: ticksToAdd + TICKS_PER_SECOND);
 			if (newDuration < maxTicks) {
 				// If within the allowed duration, apply the new effect
 				// (don't use clamp or min to avoid small beacons overwriting eachother)
