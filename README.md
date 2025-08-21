@@ -7,13 +7,15 @@
 [![Modrinth: Beacon Aura](https://img.shields.io/badge/Modrinth-Beacon_Aura-00ae5d?logo=modrinth)](https://modrinth.com/mod/beacon-aura)
 [![CurseForge: Beacon Aura](https://img.shields.io/badge/CurseForge-Beacon_Aura-f16437?logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/beacon-aura)
 
-Vanilla beacons feel underwhelming. Beacon Aura solves this by allowing you to *soak* in the beacon's effects while within its range, extending their duration, to be enjoyed after you leave their radius. The strength of the effect buildup and the maximum duration are determined by the beacon's level. The mod also increases the beacon's range by default, as well as allowing you to configure it for yourself.
+Beacons are some of the hardest items to obtain, but they feel underwhelming and are only circumstantially useful. **Beacon Aura** solves this by allowing you to *soak* in the beacon's effects while within its range, stacking duration over time, so you can enjoy their effects long after you leave their radius. The speed and cap of the effects buildup is determined by the beacon's level.
+
+**Beacon Aura** also increases the default beacon radius from 10 to 32 per level, as well as allowing you to configure it yourself.
 
 ### Features
 
-* **Extended Effect Duration:** Accumulate beacon effects while in range, enjoying them even when you move out of range.
-* **Customizable Limits:** Configure maximum effect durations per beacon level.
-* **Adjustable Range:** Modify both the base range and the level-based range increase of the beacon's effects.
+* **Extended Effect Duration:** Accumulate beacon effects while in range, to be enjoyed while out of range.
+* **Customizable Limits:** Configure maximum effect durations per beacon level, as well as effect buildup speed.
+* **Adjustable Beacon Range:** Modify both the base range and the level-based range increase of the beacon's effects.
 
 ### Configuration
 
