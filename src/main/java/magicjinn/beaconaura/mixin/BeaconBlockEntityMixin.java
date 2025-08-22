@@ -25,13 +25,9 @@ public class BeaconBlockEntityMixin {
 	private static final int PULSE_INTERVAL_TICKS = PULSE_SECONDS * TICKS_PER_SECOND; // Amount of ticks between pulses
 
 	/**
-	 * Overwrites vanilla beacon effect logic.
-	 * Behavior:
-	 * - Pulses every 4 seconds (vanilla).
-	 * - Extends existing effect duration instead of resetting it.
-	 * - Caps the accumulated duration to (15 minutes) × (beacon level).
-	 * - Adds (4 + 4 * beaconLevel) seconds of duration on each pulse
-	 * (e.g., level 1 → 8s, level 4 → 20s).
+	 * @author MagicJinn
+	 * @reason Beacon Aura overwrites this method to allow effect duration stacking
+	 *         and range modification
 	 */
 	@Overwrite
 	private static void applyPlayerEffects(World world, BlockPos pos, int beaconLevel,

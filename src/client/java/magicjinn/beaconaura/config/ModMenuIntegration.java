@@ -4,8 +4,13 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
+import magicjinn.beaconaura.BeaconAura;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModMenuIntegration implements ModMenuApi {
 
@@ -15,49 +20,6 @@ public class ModMenuIntegration implements ModMenuApi {
     private static final String TITLE = "Beacon Aura Settings"; // This doesn't seem to do anything
     private static final String CATEGORY_NAME = "Beacon Aura";
     private static final String CATEGORY_TOOLTIP = "Tune various settings for the mod.";
-
-    private static final String EXTRA_SECONDS_LABEL = "Seconds Per Level";
-    private static final String EXTRA_SECONDS_DESC = """
-            The amount of seconds added to the beacon effect's duration per beacon pulse, for each level of the beacon.
-            A beacon will always replenish at least 4 seconds on top of this value to maintain the effect, as the effect is applied every 4 seconds.
-
-            The total duration added each pulse is calculated as:
-            4 + (Extra Seconds Per Level * Beacon Level)
-
-
-            Mod default: 4
-            """;
-
-    private static final String MAX_MINUTES_LABEL = "Maximum Minutes Per Level";
-    private static final String MAX_MINUTES_DESC = """
-            The maximum duration, in minutes, that the beacon's effect can last, before it stops increasing, for each level of the beacon.
-            For example, a value of 15 will allow a level 1 beacon to last for a maximum of 15 minutes, a level 2 beacon for 30 minutes, and a level 4 beacon for 60 minutes.
-
-
-            Mod default: 15
-            """;
-
-    private static final String RANGE_BASE_LABEL = "Range Base";
-    private static final String RANGE_BASE_DESC = """
-            The base range, in blocks, that the beacon effect extends from the beacon, regardless of the beacon's level.
-            This range is a radius extending outwards from the beacon in all horizontal directions.
-
-
-            Vanilla: 10
-
-            Mod default: 32
-            """;
-
-    private static final String RANGE_PER_LEVEL_LABEL = "Range Per Level";
-    private static final String RANGE_PER_LEVEL_DESC = """
-            The additional range, in blocks, added to the beacon effect's radius for each level of the beacon.
-            This value is multiplied by the beacon level and added to the base range to determine the total range of the beacon effect.
-
-
-            Vanilla: 10
-
-            Mod default: 32
-            """;
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -70,50 +32,10 @@ public class ModMenuIntegration implements ModMenuApi {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.literal(CATEGORY_NAME))
                         .tooltip(Text.literal(CATEGORY_TOOLTIP))
-                        .option(Option.<Integer>createBuilder()
-                                .name(Text.literal(EXTRA_SECONDS_LABEL))
-                                .description(OptionDescription
-                                        .of(Text.literal(EXTRA_SECONDS_DESC)))
-                                .binding(4, () -> ModConfig.extraSecondsPerLevel,
-                                        v -> ModConfig.extraSecondsPerLevel = v)
-                                .controller(opt -> IntegerFieldControllerBuilder
-                                        .create(opt)
-                                        .range(MINVALUE, MAXVALUE))
-                                .build())
-
-                        .option(Option.<Integer>createBuilder()
-                                .name(Text.literal(MAX_MINUTES_LABEL))
-                                .description(OptionDescription
-                                        .of(Text.literal(MAX_MINUTES_DESC)))
-                                .binding(15, () -> ModConfig.maxMinutesPerLevel,
-                                        v -> ModConfig.maxMinutesPerLevel = v)
-                                .controller(opt -> IntegerFieldControllerBuilder
-                                        .create(opt)
-                                        .range(MINVALUE, MAXVALUE))
-                                .build())
-
-                        .option(Option.<Integer>createBuilder()
-                                .name(Text.literal(RANGE_BASE_LABEL))
-                                .description(OptionDescription
-                                        .of(Text.literal(RANGE_BASE_DESC)))
-                                .binding(32, () -> ModConfig.rangeBase,
-                                        v -> ModConfig.rangeBase = v)
-                                .controller(opt -> IntegerFieldControllerBuilder
-                                        .create(opt)
-                                        .range(MINVALUE, MAXVALUE))
-                                .build())
-
-                        .option(Option.<Integer>createBuilder()
-                                .name(Text.literal(RANGE_PER_LEVEL_LABEL))
-                                .description(OptionDescription
-                                        .of(Text.literal(RANGE_PER_LEVEL_DESC)))
-                                .binding(32, () -> ModConfig.rangePerLevel,
-                                        v -> ModConfig.rangePerLevel = v)
-                                .controller(opt -> IntegerFieldControllerBuilder
-                                        .create(opt)
-                                        .range(MINVALUE, MAXVALUE))
-                                .build())
-
+                        .option(CreateOption(ModData.EXTRA_SECONDS))
+                        .option(CreateOption(ModData.MAX_MINUTES))
+                        .option(CreateOption(ModData.RANGE_BASE))
+                        .option(CreateOption(ModData.RANGE_PER_LEVEL))
                         .build())
                 .save(() -> {
                     // Save the config when the user clicks save
@@ -122,4 +44,89 @@ public class ModMenuIntegration implements ModMenuApi {
                 .build()
                 .generateScreen(parentScreen);
     }
+
+    private static Option<Integer> CreateOption(ModData dict) {
+        return Option.<Integer>createBuilder()
+                .name(Text.literal(dict.label))
+                .description(OptionDescription.createBuilder()
+                        .text(Text.literal(dict.desc))
+                        .webpImage(dict.image)
+                        .build())
+                .binding(4, () -> ModConfig.extraSecondsPerLevel,
+                        v -> ModConfig.extraSecondsPerLevel = v)
+                .controller(opt -> IntegerFieldControllerBuilder
+                        .create(opt)
+                        .range(MINVALUE, MAXVALUE))
+                .build();
+    }
+
+    private enum ModData {
+        EXTRA_SECONDS("Seconds Per Level",
+                """
+                        The amount of seconds added to the beacon effect's duration per beacon pulse, for each level of the beacon.
+                        A beacon will always replenish at least 4 seconds on top of this value to maintain the effect, as the effect is applied every 4 seconds.
+
+                        The total duration added each pulse is calculated as:
+                        4 + (Extra Seconds Per Level * Beacon Level)
+
+
+                        Mod default: 4
+                        """,
+                Identifier.of(BeaconAura.MOD_ID, "extra_seconds_image.webp")),
+        MAX_MINUTES("Maximum Minutes Per Level",
+                """
+                        The maximum duration, in minutes, that the beacon's effect can last, before it stops increasing, for each level of the beacon.
+                        For example, a value of 15 will allow a level 1 beacon to last for a maximum of 15 minutes, a level 2 beacon for 30 minutes, and a level 4 beacon for 60 minutes.
+
+
+                        Mod default: 15
+                        """,
+                Identifier.of(BeaconAura.MOD_ID, "max_minutes_image.webp")),
+        RANGE_BASE("Range Base",
+                """
+                        The base range, in blocks, that the beacon effect extends from the beacon, regardless of the beacon's level.
+                        This range is a radius extending outwards from the beacon in all horizontal directions.
+
+
+                        Vanilla: 10
+
+                        Mod default: 32
+                        """,
+                Identifier.of(BeaconAura.MOD_ID, "range_base_image.webp")),
+        RANGE_PER_LEVEL("Range Per Level",
+                """
+                        The additional range, in blocks, added to the beacon effect's radius for each level of the beacon.
+                        This value is multiplied by the beacon level and added to the base range to determine the total range of the beacon effect.
+
+
+                        Vanilla: 10
+
+                        Mod default: 32
+                        """,
+                Identifier.of(BeaconAura.MOD_ID,
+                        "range_per_level_image.webp"));
+
+        public final String label;
+        public final String desc;
+        public final Identifier image;
+
+        ModData(String label, String desc, Identifier image) {
+            this.label = label;
+            this.desc = desc;
+            this.image = image;
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+        Map<ModData, Map<String, Object>> configValues = new HashMap<>();
+        for (ModData modData : ModData.values()) {
+            configValues.put(modData, Map.of(
+                    "LABEL", modData.label,
+                    "DESC", modData.desc,
+                    "IMAGE", modData.image));
+        }
+    }
+
 }
