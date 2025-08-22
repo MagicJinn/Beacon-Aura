@@ -32,10 +32,10 @@ public class ModMenuIntegration implements ModMenuApi {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.literal(CATEGORY_NAME))
                         .tooltip(Text.literal(CATEGORY_TOOLTIP))
-                        .option(CreateOption(ModData.EXTRA_SECONDS))
-                        .option(CreateOption(ModData.MAX_MINUTES))
-                        .option(CreateOption(ModData.RANGE_BASE))
-                        .option(CreateOption(ModData.RANGE_PER_LEVEL))
+                        .option(createOption(ModData.EXTRA_SECONDS))
+                        .option(createOption(ModData.MAX_MINUTES))
+                        .option(createOption(ModData.RANGE_BASE))
+                        .option(createOption(ModData.RANGE_PER_LEVEL))
                         .build())
                 .save(() -> {
                     // Save the config when the user clicks save
@@ -45,7 +45,7 @@ public class ModMenuIntegration implements ModMenuApi {
                 .generateScreen(parentScreen);
     }
 
-    private static Option<Integer> CreateOption(ModData dict) {
+    private static Option<Integer> createOption(ModData dict) {
         return Option.<Integer>createBuilder()
                 .name(Text.literal(dict.label))
                 .description(OptionDescription.createBuilder()
@@ -58,6 +58,10 @@ public class ModMenuIntegration implements ModMenuApi {
                         .create(opt)
                         .range(MINVALUE, MAXVALUE))
                 .build();
+    }
+
+    private static Identifier gimage(String name) {
+        return Identifier.of(BeaconAura.MOD_ID, "textures/gui/" + name + ".webp");
     }
 
     private enum ModData {
@@ -73,7 +77,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
                         Mod default: 4
                         """,
-                Identifier.of(BeaconAura.MOD_ID, "extra_seconds_image.webp")),
+                gimage("extra_seconds_image")),
         MAX_MINUTES(
                 "Maximum Minutes Per Level",
                 """
@@ -83,7 +87,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
                         Mod default: 15
                         """,
-                Identifier.of(BeaconAura.MOD_ID, "max_minutes_image.webp")),
+                gimage("max_minutes_image")),
         RANGE_BASE(
                 "Range Base",
                 """
@@ -95,7 +99,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
                         Mod default: 32
                         """,
-                Identifier.of(BeaconAura.MOD_ID, "range_base_image.webp")),
+                gimage("range_base_image")),
         RANGE_PER_LEVEL(
                 "Range Per Level",
                 """
@@ -107,8 +111,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
                         Mod default: 32
                         """,
-                Identifier.of(BeaconAura.MOD_ID,
-                        "range_per_level_image.webp"));
+                gimage("range_per_level_image"));
 
         public final String label;
         public final String desc;
