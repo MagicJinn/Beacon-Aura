@@ -61,7 +61,8 @@ public class ModMenuIntegration implements ModMenuApi {
     }
 
     private enum ModData {
-        EXTRA_SECONDS("Seconds Per Level",
+        EXTRA_SECONDS(
+                "Seconds Per Level",
                 """
                         The amount of seconds added to the beacon effect's duration per beacon pulse, for each level of the beacon.
                         A beacon will always replenish at least 4 seconds on top of this value to maintain the effect, as the effect is applied every 4 seconds.
@@ -73,7 +74,8 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 4
                         """,
                 Identifier.of(BeaconAura.MOD_ID, "extra_seconds_image.webp")),
-        MAX_MINUTES("Maximum Minutes Per Level",
+        MAX_MINUTES(
+                "Maximum Minutes Per Level",
                 """
                         The maximum duration, in minutes, that the beacon's effect can last, before it stops increasing, for each level of the beacon.
                         For example, a value of 15 will allow a level 1 beacon to last for a maximum of 15 minutes, a level 2 beacon for 30 minutes, and a level 4 beacon for 60 minutes.
@@ -82,7 +84,8 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 15
                         """,
                 Identifier.of(BeaconAura.MOD_ID, "max_minutes_image.webp")),
-        RANGE_BASE("Range Base",
+        RANGE_BASE(
+                "Range Base",
                 """
                         The base range, in blocks, that the beacon effect extends from the beacon, regardless of the beacon's level.
                         This range is a radius extending outwards from the beacon in all horizontal directions.
@@ -93,7 +96,8 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 32
                         """,
                 Identifier.of(BeaconAura.MOD_ID, "range_base_image.webp")),
-        RANGE_PER_LEVEL("Range Per Level",
+        RANGE_PER_LEVEL(
+                "Range Per Level",
                 """
                         The additional range, in blocks, added to the beacon effect's radius for each level of the beacon.
                         This value is multiplied by the beacon level and added to the base range to determine the total range of the beacon effect.
