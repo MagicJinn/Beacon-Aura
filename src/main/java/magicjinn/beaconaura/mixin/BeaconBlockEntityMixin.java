@@ -50,7 +50,11 @@ public class BeaconBlockEntityMixin {
 		final int amplifier = (beaconLevel >= 4 && isSecondarySameAsPrimary) ? 1 : 0;
 
 		// Apply to all non-spectating players in range, spanning full world height
-		final Box box = new Box(pos).expand(range).stretch(0.0F, world.getHeight(), 0.0F);
+		// and down to bedrock
+		final Box box = new Box(
+				pos.getX() - range, world.getBottomY(), pos.getZ() - range,
+				pos.getX() + range + 1, world.getHeight(), pos.getZ() + range + 1);
+
 		final List<PlayerEntity> players = world.getNonSpectatingEntities(PlayerEntity.class, box);
 		if (players.isEmpty())
 			return;

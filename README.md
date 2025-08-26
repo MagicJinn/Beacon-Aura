@@ -15,6 +15,7 @@ Beacons are some of the hardest items to obtain, but they feel underwhelming and
 
 * **Extended Effect Duration:** Accumulate beacon effects while in range, to be enjoyed while out of range.
 * **Customizable Limits:** Configure maximum effect durations per beacon level, as well as effect buildup speed.
+* **Height Independant Range:** Effect range extends down to bedrock, and up to build limit.
 * **Adjustable Beacon Range:** Modify both the base range and the level-based range increase of the beacon's effects.
 * **Serverside:** When installed on a server, players do not need to install the mod. Can also be installed in singleplayer worlds.
 
