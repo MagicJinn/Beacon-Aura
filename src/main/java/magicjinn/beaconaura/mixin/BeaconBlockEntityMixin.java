@@ -33,7 +33,7 @@ public class BeaconBlockEntityMixin {
 	private static void applyPlayerEffects(World world, BlockPos pos, int beaconLevel,
 			@Nullable RegistryEntry<StatusEffect> primaryEffect,
 			@Nullable RegistryEntry<StatusEffect> secondaryEffect) {
-		if (world.isClient || primaryEffect == null)
+		if (world.isClient() || primaryEffect == null)
 			return;
 
 		// Amount of ticks each level adds to the effect per pulse
