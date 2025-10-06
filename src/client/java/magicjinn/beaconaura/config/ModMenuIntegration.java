@@ -108,7 +108,7 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 32
                         """,
                 gimage("range_base_image"),
-                32,
+                            ModConfig.rangeBase,
                 () -> ModConfig.rangeBase,
                 v -> ModConfig.rangeBase = v),
         RANGE_PER_LEVEL(
@@ -123,7 +123,7 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 32
                         """,
                 gimage("range_per_level_image"),
-                32,
+                            ModConfig.rangePerLevel,
                 () -> ModConfig.rangePerLevel,
                 v -> ModConfig.rangePerLevel = v);
 

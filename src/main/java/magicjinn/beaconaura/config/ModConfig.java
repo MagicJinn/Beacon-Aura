@@ -14,8 +14,8 @@ public class ModConfig {
     // Gameplay configuration
     public static int extraSecondsPerLevel = 4;
     public static int maxMinutesPerLevel = 15;
-    public static int rangeBase = 10;
-    public static int rangePerLevel = 10;
+    public static int rangeBase = 32;
+    public static int rangePerLevel = 32;
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File CONFIG_FILE = FabricLoader.getInstance()
