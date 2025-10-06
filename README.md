@@ -20,7 +20,7 @@ Beacons are some of the hardest items to obtain, but they feel underwhelming and
 * **No Beacon Particles:** Completely disables beacon particles. 
 * **Serverside:** When installed on a server, players do not need to install the mod. Can also be installed in singleplayer worlds.
 
-## Incompatibility
+### Incompatibility
 Any mod that alters beacon functionality has the potential of breaking and should probably not be used.
 Any mod marked as incompatible on launch is *fully replaced* by this mod.
 
