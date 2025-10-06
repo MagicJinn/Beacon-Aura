@@ -17,7 +17,12 @@ Beacons are some of the hardest items to obtain, but they feel underwhelming and
 * **Customizable Limits:** Configure maximum effect durations per beacon level, as well as effect buildup speed.
 * **Height Independant Range:** Effect range extends down to bedrock, and up to build limit.
 * **Adjustable Beacon Range:** Modify both the base range and the level-based range increase of the beacon's effects.
+* **No Beacon Particles:** Completely disables beacon particles. 
 * **Serverside:** When installed on a server, players do not need to install the mod. Can also be installed in singleplayer worlds.
+
+## Incompatibility
+Any mod that alters beacon functionality has the potential of breaking and should probably not be used.
+Any mod marked as incompatible on launch is *fully replaced* by this mod.
 
 ### Configuration
 
