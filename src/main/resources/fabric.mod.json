@@ -32,7 +32,8 @@
     },
     "breaks": {
         "beacon-range-extender": "*",
-        "better_beacon_range": "*"
+        "better_beacon_range": "*",
+        "no_beacon_particles": "*"
     },
     "custom": {
         "modmenu": {
