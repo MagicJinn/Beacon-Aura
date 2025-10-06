@@ -80,7 +80,7 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 4
                         """,
                 gimage("extra_seconds_image"),
-                4,
+                            ModConfig.extraSecondsPerLevel,
                 () -> ModConfig.extraSecondsPerLevel,
                 v -> ModConfig.extraSecondsPerLevel = v),
         MAX_MINUTES(
@@ -93,7 +93,7 @@ public class ModMenuIntegration implements ModMenuApi {
                         Mod default: 15
                         """,
                 gimage("max_minutes_image"),
-                15,
+                            ModConfig.maxMinutesPerLevel,
                 () -> ModConfig.maxMinutesPerLevel,
                 v -> ModConfig.maxMinutesPerLevel = v),
         RANGE_BASE(
