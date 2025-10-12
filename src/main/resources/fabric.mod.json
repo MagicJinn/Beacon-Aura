@@ -9,7 +9,7 @@
         "homepage": "https://github.com/MagicJinn/Beacon-Aura",
         "issues": "https://github.com/MagicJinn/Beacon-Aura/issues"
     },
-    "license": "GPL-3.0",
+    "license": "MIT",
     "icon": "assets/beacon-aura/icon.png",
     "environment": "*",
     "entrypoints": {
