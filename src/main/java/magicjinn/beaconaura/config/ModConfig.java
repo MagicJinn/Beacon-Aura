@@ -2,6 +2,7 @@ package magicjinn.beaconaura.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import magicjinn.beaconaura.BeaconAura;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
@@ -20,7 +21,7 @@ public class ModConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File CONFIG_FILE = FabricLoader.getInstance()
             .getConfigDir()
-            .resolve("beacon-aura.json")
+            .resolve(BeaconAura.MOD_ID + ".json")
             .toFile();
 
     public static void load() {
@@ -60,9 +61,9 @@ public class ModConfig {
     }
 
     private static class ConfigData {
-        int extraSecondsPerLevel = 4;
-        int maxMinutesPerLevel = 15;
-        int rangeBase = 10;
-        int rangePerLevel = 10;
+        int extraSecondsPerLevel = ModConfig.extraSecondsPerLevel;
+        int maxMinutesPerLevel = ModConfig.maxMinutesPerLevel;
+        int rangeBase = ModConfig.rangeBase;
+        int rangePerLevel = ModConfig.rangePerLevel;
     }
 }
