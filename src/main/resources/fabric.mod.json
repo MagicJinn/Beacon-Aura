@@ -22,10 +22,10 @@
         "environment": "client"
     }],
     "depends": {
-        "fabricloader": "*",
-        "minecraft": ">=1.21.0",
-        "java": ">=17"
-    },
+        "fabricloader": ">=0.18.4",
+        "minecraft": "~26.1",
+        "java": ">=25"
+        },
     "suggests": {
         "modmenu": "*",
         "yet_another_config_lib_v3": "*"
