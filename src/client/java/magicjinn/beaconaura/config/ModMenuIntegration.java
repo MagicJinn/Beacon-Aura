@@ -17,8 +17,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ModMenuIntegration implements ModMenuApi {
-    private static final int MINVALUE = 0; // Who cares
-    private static final int MAXVALUE = 99999; // Just to prevent people from putting it as maxInt
+    private static final int MIN_VALUE = 0; // Who cares
+    private static final int MAX_VALUE = 99999; // Just to prevent people from putting it as maxInt
 
     private static final String CATEGORY_NAME = "Beacon Aura";
 
@@ -29,11 +29,11 @@ public class ModMenuIntegration implements ModMenuApi {
 
     public static Screen createConfigScreen(Screen parentScreen) {
         return YetAnotherConfigLib.createBuilder()
-                .title(Text.literal(""))
+                .title(Component.literal(""))
                 // These don't seem to do anything
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.literal(CATEGORY_NAME))
-                        .tooltip(Text.literal("")) // This too
+                        .name(Component.literal(CATEGORY_NAME))
+                        .tooltip(Component.literal("")) // This too
                         .option(createOption(ModData.EXTRA_SECONDS))
                         .option(createOption(ModData.MAX_MINUTES))
                         .option(createOption(ModData.RANGE_BASE))
@@ -46,9 +46,9 @@ public class ModMenuIntegration implements ModMenuApi {
 
     private static Option<Integer> createOption(ModData modData) {
         return Option.<Integer>createBuilder()
-                .name(Text.literal(modData.label))
+                .name(Component.literal(modData.label))
                 .description(OptionDescription.createBuilder()
-                        .text(Text.literal(modData.desc))
+                        .text(Component.literal(modData.desc))
                         .webpImage(modData.image)
                         .build())
                 .binding(modData.defaultValue, modData.getter, modData.setter)
@@ -58,7 +58,7 @@ public class ModMenuIntegration implements ModMenuApi {
     }
 
     private static Identifier image(String name) {
-        return Identifier.of(BeaconAura.MOD_ID, "textures/gui/" + name + ".webp");
+        return Identifier.fromNamespaceAndPath(BeaconAura.MOD_ID, "textures/gui/" + name + ".webp");
     }
 
     private enum ModData {

@@ -29,7 +29,7 @@ public class BeaconBlockEntityMixin {
      *         and range modification
      */
     @Overwrite
-    private static void applyPlayerEffects(Level world, BlockPos pos, int beaconLevel,
+    private static void applyEffects(Level world, BlockPos pos, int beaconLevel,
             @Nullable Holder<MobEffect> primaryEffect,
             @Nullable Holder<MobEffect> secondaryEffect) {
         if (world.isClientSide() || primaryEffect == null) {
