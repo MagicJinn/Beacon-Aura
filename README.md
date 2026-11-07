@@ -4,8 +4,7 @@
 
 ## Improves beacons by allowing you to soak in a beacon's effects with duration stacking over time
 
-[![Modrinth: Beacon Aura](https://img.shields.io/badge/Modrinth-Beacon_Aura-00ae5d?logo=modrinth)](https://modrinth.com/mod/beacon-aura)
-[![CurseForge: Beacon Aura](https://img.shields.io/badge/CurseForge-Beacon_Aura-f16437?logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/beacon-aura)
+[![Modrinth: Beacon Aura](https://img.shields.io/badge/Modrinth-Beacon_Aura-00ae5d?logo=modrinth)](https://modrinth.com/mod/beacon-aura) [![CurseForge: Beacon Aura](https://img.shields.io/badge/CurseForge-Beacon_Aura-f16437?logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/beacon-aura)
 
 Beacons are some of the hardest items to obtain, but they feel underwhelming and are only circumstantially useful. **Beacon Aura** solves this by allowing you to *soak* in the beacon's effects while within its range, stacking duration over time, so you can enjoy their effects long after you leave their radius. The speed and cap of the effects buildup is determined by the beacon's level.
 
