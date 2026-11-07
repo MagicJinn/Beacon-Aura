@@ -15,8 +15,6 @@ public class ModConfig {
     // Gameplay configuration
     public static int extraSecondsPerLevel = 4;
     public static int maxMinutesPerLevel = 15;
-    public static int rangeBase = 32;
-    public static int rangePerLevel = 32;
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File CONFIG_FILE = FabricLoader.getInstance()
@@ -35,8 +33,6 @@ public class ModConfig {
             if (data != null) {
                 extraSecondsPerLevel = data.extraSecondsPerLevel;
                 maxMinutesPerLevel = data.maxMinutesPerLevel;
-                rangeBase = data.rangeBase;
-                rangePerLevel = data.rangePerLevel;
             }
         } catch (IOException e) {
             save();
@@ -51,8 +47,6 @@ public class ModConfig {
                 ConfigData data = new ConfigData();
                 data.extraSecondsPerLevel = extraSecondsPerLevel;
                 data.maxMinutesPerLevel = maxMinutesPerLevel;
-                data.rangeBase = rangeBase;
-                data.rangePerLevel = rangePerLevel;
                 GSON.toJson(data, writer);
             }
         } catch (IOException e) {
@@ -63,7 +57,5 @@ public class ModConfig {
     private static class ConfigData {
         int extraSecondsPerLevel = ModConfig.extraSecondsPerLevel;
         int maxMinutesPerLevel = ModConfig.maxMinutesPerLevel;
-        int rangeBase = ModConfig.rangeBase;
-        int rangePerLevel = ModConfig.rangePerLevel;
     }
 }

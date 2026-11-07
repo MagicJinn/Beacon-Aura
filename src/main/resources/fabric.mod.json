@@ -41,11 +41,6 @@
 		"modmenu": "*",
 		"yet_another_config_lib_v3": "*"
 	},
-	"breaks": {
-		"beacon-range-extender": "*",
-		"better_beacon_range": "*",
-		"no_beacon_particles": "*"
-	},
 	"custom": {
 		"modmenu": {
 			"links": {
