@@ -1,6 +1,6 @@
 # Beacon Aura
 
-![icon.png](icon.png)
+![icon.png](https://raw.githubusercontent.com/MagicJinn/Beacon-Aura/refs/heads/main/icon.png)
 
 ## Improves beacons by allowing you to soak in a beacon's effects with duration stacking over time
 
